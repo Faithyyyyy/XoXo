@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.span {
+  background: linear-gradient(to right, #ffbdf0, #f289ff, #ce7aff);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.wrapper {
+  background: linear-gradient(#fff, #fff),
+    linear-gradient(to right, #ffbdf0, #f289ff, #ce7aff);
+  background-origin: padding-box, border-box;
+  background-repeat: no-repeat; /* this is important */
+  border: 2px solid transparent;
+  padding: 15px;
+}
