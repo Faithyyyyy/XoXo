@@ -1,6 +1,6 @@
-import spiralArrow from "../assets/spiralArrow.png";
-import heroImg from "../assets/Faith-1.png";
-import heroImg2 from "../assets/faith-2.jpg";
+import { spiralArrow } from "../assets/AllImages";
+import { HeroImg } from "../assets/AllImages";
+
 import Button from "./button";
 function Hero() {
   return (
@@ -35,7 +35,7 @@ function Hero() {
           </div>
         </div>
         <div className="w-full max-w-[500px]">
-          <img src={heroImg} alt="" />
+          <img src={HeroImg} alt="" />
         </div>
       </div>
     </section>

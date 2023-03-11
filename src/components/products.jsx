@@ -1,4 +1,4 @@
-import spiralArrow from "../assets/spiralArrow.png";
+import { spiralArrow } from "../assets/AllImages";
 import { FiSearch } from "react-icons/fi";
 function Products() {
   return (
