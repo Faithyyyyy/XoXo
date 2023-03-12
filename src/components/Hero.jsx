@@ -4,7 +4,7 @@ import { HeroImg } from "../assets/AllImages";
 import Button from "./button";
 function Hero() {
   return (
-    <section className="my-16">
+    <section className="my-16 px-5 max-w-7xl mx-auto">
       <div className="flex flex-col gap-7 md:flex-row items-center justify-between">
         {/* First Section */}
         <div className="font-gilroyRegular max-w-[600px] xl:max-w-[700px]">

@@ -4,7 +4,7 @@ import { NavLink, Link } from "react-router-dom";
 
 function Navbar({ navIcon, handleNav }) {
   return (
-    <header>
+    <header className="pt-10 px-5 max-w-7xl mx-auto z-50">
       {/* <!-- component --> */}
       <nav class=" items-center relative justify-between bg-white  py-6 w-full hidden md:flex">
         <div className="flex gap-28 items-center">
@@ -19,24 +19,26 @@ function Navbar({ navIcon, handleNav }) {
             class="sm:gap-10 md:gap-16  hidden md:flex  cursor-pointer    font-gilroyRegular "
           >
             <li class="text-lg text-black cursor-pointer">
-              <a href="#" class="">
+              <NavLink to="/" class="nav">
                 Home
-              </a>
+              </NavLink>
             </li>
             <li class="text-lg cursor-pointer">
-              <a href="#" class="text-black">
+              <NavLink to="/about" class="text-black nav">
                 About
-              </a>
+              </NavLink>
             </li>
-            <li class="text-lg text-white">
-              <a href="#" class="text-black">
-                Blog
-              </a>
+            <li class="text-lg ">
+              <NavLink to="/contact" class="text-black nav">
+                Contact Us
+              </NavLink>
             </li>
           </ul>
         </div>
         <div class="flex gap-5 items-center justify-center">
-          <FiShoppingCart className="text-black text-xl lg:text-2xl" />
+          <Link to="/cart">
+            <FiShoppingCart className="text-black text-xl lg:text-2xl" />
+          </Link>
           <div class="h-7 w-7 md:w-10 md:h-10 cursor-pointer">
             <img src={fakeAvatar} className="rounded-[50%] " alt="" />
           </div>
@@ -44,14 +46,16 @@ function Navbar({ navIcon, handleNav }) {
       </nav>
       {/* mobile render */}
 
-      <div className="flex justify-between items-center px-4 md:hidden mb-16 delay-150 z-50">
+      <div className="flex justify-between items-center px-4 md:hidden mb-16 delay-150 ">
         <div>
           <span className="font-eagle text-black cursor-pointer text-2xl">
             Xoxo.
           </span>
         </div>
         <div class="flex gap-9 items-center justify-center">
-          <FiShoppingCart className="text-black text-2xl" />
+          <Link to="/cart">
+            <FiShoppingCart className="text-black text-2xl" />
+          </Link>
           <div
             className={`w-6 h-8  relative ${navIcon ? "" : "top-2"} `}
             onClick={handleNav}
@@ -77,15 +81,21 @@ function Navbar({ navIcon, handleNav }) {
       <div
         className={`h-full bg-white w-[80%] px-8 absolute top-0 left-0 py-20 z-10   ${
           navIcon ? "block" : "hidden"
-        } `}
+        } mobilNav`}
       >
         <nav className="nav flex flex-col gap-12 text-lg">
           <NavLink to="/" className="font-gilroyRegular">
             Home
           </NavLink>
-          <Link className="font-gilroyRegular">Blogs</Link>
-          <Link className="font-gilroyRegular">About us</Link>
-          <Link className="font-gilroyRegular">Login</Link>
+          <Link to="/about" className="font-gilroyRegular">
+            About us
+          </Link>
+          <Link to="/contact" className="font-gilroyRegular">
+            Contact Us
+          </Link>
+          <Link to="/login" className="font-gilroyRegular">
+            Login
+          </Link>
         </nav>
       </div>
       {/* mobile render */}

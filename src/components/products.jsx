@@ -2,7 +2,7 @@ import { spiralArrow } from "../assets/AllImages";
 import { FiSearch } from "react-icons/fi";
 function Products() {
   return (
-    <section className="mt-14">
+    <section className="mt-14 px-5">
       <div>
         <div className="flex justify-center items-center my-4 gap-6">
           <h2 className="text-3xl md:text-5xl font-gilroyBold">
@@ -16,7 +16,7 @@ function Products() {
             />
           </div>
         </div>
-        <p className="font-gilroyMeduim text-gray-400">
+        <p className="font-gilroyMeduim text-center text-gray-400">
           Search for the latest articles and find amazing products to buy from
           our huge collection
         </p>
@@ -25,7 +25,7 @@ function Products() {
           <FiSearch className="text-gray-300 text-2xl absolute left-5 top-[14px]" />
           <input
             type="text"
-            className="bg-gray-100 h-14 w-full max-w-[500px] rounded font-gilroyRegular pl-16"
+            className="bg-gray-100 h-14 w-full max-w-[500px] rounded font-gilroyRegular pl-16 outline-none focus:border-2 border-[#ffbdf0]"
             placeholder="Search Products by Category"
           />
           <button className="hidden sm:block bg-black text-white font-gilroyMedium h-12 w-[40%] absolute top-1 right-2 rounded">
