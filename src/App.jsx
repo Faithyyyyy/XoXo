@@ -7,14 +7,17 @@ import AboutUs from "./pages/About";
 import Cart from "./pages/Cart";
 import ContactUs from "./pages/Contact";
 import Home from "./pages/Home.jsx";
+import { useAsync } from "./useQuery";
+
 function App() {
-  const [navIcon, setNavIcon] = useState(false);
-  const handleNav = () => {
-    setNavIcon(!navIcon);
-  };
+  // logic for mobile nav
+
+  // logic for mobile nav
+  const { isLoading, data, error, isError, isFetching } = useAsync();
+  console.log(data, isLoading, isFetching);
   return (
     <div>
-      <Navbar handleNav={handleNav} navIcon={navIcon} />
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutUs />} />

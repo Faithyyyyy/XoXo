@@ -1,12 +1,16 @@
 import { FiShoppingCart } from "react-icons/fi";
 import fakeAvatar from "../assets/fakeAvatar.webp";
 import { NavLink, Link } from "react-router-dom";
-
-function Navbar({ navIcon, handleNav }) {
+import { useState } from "react";
+function Navbar() {
+  const [navIcon, setNavIcon] = useState(false);
+  const handleNav = () => {
+    setNavIcon(!navIcon);
+  };
   return (
     <header className="pt-10 px-5 max-w-7xl mx-auto z-50">
       {/* <!-- component --> */}
-      <nav class=" items-center relative justify-between bg-white  py-6 w-full hidden md:flex">
+      <nav className=" items-center relative justify-between bg-white  py-6 w-full hidden md:flex">
         <div className="flex gap-28 items-center">
           <div>
             <span className="font-eagle text-black cursor-pointer text-2xl">
@@ -16,30 +20,30 @@ function Navbar({ navIcon, handleNav }) {
           <ul
             id="drawer"
             role="menu"
-            class="sm:gap-10 md:gap-16  hidden md:flex  cursor-pointer    font-gilroyRegular "
+            className="sm:gap-10 md:gap-16  hidden md:flex  cursor-pointer    font-gilroyRegular "
           >
-            <li class="text-lg text-black cursor-pointer">
-              <NavLink to="/" class="nav">
+            <li className="text-lg text-black cursor-pointer">
+              <NavLink to="/" className="nav">
                 Home
               </NavLink>
             </li>
-            <li class="text-lg cursor-pointer">
-              <NavLink to="/about" class="text-black nav">
+            <li className="text-lg cursor-pointer">
+              <NavLink to="/about" className="text-black nav">
                 About
               </NavLink>
             </li>
-            <li class="text-lg ">
-              <NavLink to="/contact" class="text-black nav">
+            <li className="text-lg ">
+              <NavLink to="/contact" className="text-black nav">
                 Contact Us
               </NavLink>
             </li>
           </ul>
         </div>
-        <div class="flex gap-5 items-center justify-center">
+        <div className="flex gap-5 items-center justify-center">
           <Link to="/cart">
             <FiShoppingCart className="text-black text-xl lg:text-2xl" />
           </Link>
-          <div class="h-7 w-7 md:w-10 md:h-10 cursor-pointer">
+          <div className="h-7 w-7 md:w-10 md:h-10 cursor-pointer">
             <img src={fakeAvatar} className="rounded-[50%] " alt="" />
           </div>
         </div>
@@ -52,7 +56,7 @@ function Navbar({ navIcon, handleNav }) {
             Xoxo.
           </span>
         </div>
-        <div class="flex gap-9 items-center justify-center">
+        <div className="flex gap-9 items-center justify-center">
           <Link to="/cart">
             <FiShoppingCart className="text-black text-2xl" />
           </Link>
