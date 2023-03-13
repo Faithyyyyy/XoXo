@@ -1,6 +1,10 @@
 import { spiralArrow } from "../assets/AllImages";
+import { useContext } from "react";
+import { UserContext } from "../App";
 import { FiSearch } from "react-icons/fi";
 function Products() {
+  const data = useContext(UserContext);
+  console.log(data);
   return (
     <section className="mt-14 px-5">
       <div>
