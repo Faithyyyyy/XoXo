@@ -2,11 +2,14 @@ import { spiralArrow } from "../assets/AllImages";
 import { useContext } from "react";
 import { UserContext } from "../App";
 import { FiSearch } from "react-icons/fi";
+// import ProductCard from "./ProductsCard";
+
 function Products() {
-  const data = useContext(UserContext);
-  console.log(data);
+  const { data, isLoading } = useContext(UserContext);
+  const allProduct = data?.data;
+
   return (
-    <section className="mt-14 px-5">
+    <section className="mt-14 px-5 max-w-7xl mx-auto font-gilroyMedium">
       <div>
         <div className="flex justify-center items-center my-4 gap-6">
           <h2 className="text-3xl md:text-5xl font-gilroyBold">
@@ -40,6 +43,42 @@ function Products() {
             Explore Now
           </button>
         </div>
+      </div>
+      <div className="grid px-5 mt-32 lg:mt-20 ">
+        {isLoading &&
+          [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
+            <div className="animate-pulse rounded-md p-4" key={n}>
+              <div className="rounded-md bg-slate-200 h-72 w-full "></div>
+              <div className="mt-4 flex justify-between">
+                <div>
+                  <p className="bg-slate-200 w-32 rounded-md h-5 mb-3"></p>
+                  <p className="bg-slate-200 w-32 rounded-md h-3"></p>
+                </div>
+                <div className=" bg-slate-200 h-8 rounded-md w-24"></div>
+              </div>
+            </div>
+          ))}
+        {allProduct?.map((card) => {
+          return (
+            <div className="relative">
+              <img
+                src={card.image}
+                alt=""
+                className="h-96 w-full object-cover rounded-md"
+              />
+
+              <div className="mt-4 flex justify-between">
+                <div>
+                  <p className="font-gilroyBold text-lg mb-3">{card.title}</p>
+                  <p className="text-gray-400 text-base">{card.category}</p>
+                </div>
+                <div className="btn px-7 h-10 flex justify-center items-center font-gilroyBold rounded-md">
+                  ${card.price}
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

@@ -21,3 +21,12 @@ nav .active {
 .mobilNav {
   z-index: 9999;
 }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-column-gap: 60px;
+  grid-row-gap: 50px;
+}
+.btn {
+  background: linear-gradient(to bottom, #f0daef, #eff3ff);
+}

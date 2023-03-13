@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { createContext } from "react";
 import { Route, Routes } from "react-router";
 import "./App.css";
 import Footer from "./components/Footer";
@@ -14,9 +14,8 @@ function App() {
   // logic for context
   // logic for mobile nav
   const { isLoading, data, error, isError, isFetching } = useAsync();
-  console.log(data, isLoading, isFetching);
   return (
-    <UserContext.Provider value={data?.data}>
+    <UserContext.Provider value={{ data, isLoading }}>
       <div>
         <Navbar />
         <Routes>
