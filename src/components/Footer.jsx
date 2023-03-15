@@ -15,9 +15,9 @@ function Footer() {
               Find us on any of these platforms, we respond 1-2 business days.
             </h5>
             <div className="mt-6 flex gap-4 text-3xl lg:mb-0 mb-6">
-              <AiFillFacebook className="text-blue-700" />
-              <AiFillInstagram className="text-pink-400" />
-              <AiFillTwitterSquare className="text-blue-400" />
+              <AiFillFacebook className="ext-blue-700" />
+              <AiFillInstagram className="" />
+              <AiFillTwitterSquare className="" />
             </div>
           </div>
           <div className="w-full lg:w-6/12 px-4">

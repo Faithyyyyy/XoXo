@@ -2,13 +2,18 @@ import { FiShoppingCart } from "react-icons/fi";
 import fakeAvatar from "../assets/fakeAvatar.webp";
 import { NavLink, Link } from "react-router-dom";
 import { useState } from "react";
+import { useContext } from "react";
+import { AppContext } from "../context";
+
 function Navbar() {
+  const { items } = useContext(AppContext);
+  console.log(items.length);
   const [navIcon, setNavIcon] = useState(false);
   const handleNav = () => {
     setNavIcon(!navIcon);
   };
   return (
-    <header className="pt-10 px-5 max-w-7xl mx-auto z-50">
+    <header className="pt-10 px-5 max-w-7xl xl:px-0 mx-auto z-50">
       {/* <!-- component --> */}
       <nav className=" items-center relative justify-between bg-white  py-6 w-full hidden md:flex">
         <div className="flex gap-28 items-center">
@@ -40,9 +45,16 @@ function Navbar() {
           </ul>
         </div>
         <div className="flex gap-5 items-center justify-center">
-          <Link to="/cart">
-            <FiShoppingCart className="text-black text-xl lg:text-2xl" />
-          </Link>
+          <div className="relative">
+            <Link to="/cart">
+              <FiShoppingCart className="text-black text-xl lg:text-2xl" />
+            </Link>
+            {items.length > 0 && (
+              <div className="bg-red-500 font-gilroyRegular p-2 w-4 h-4 text-[12px] text-white flex items-center justify-center -top-2 -right-2 rounded-full absolute">
+                {items.length}
+              </div>
+            )}
+          </div>
           <div className="h-7 w-7 md:w-10 md:h-10 cursor-pointer">
             <img src={fakeAvatar} className="rounded-[50%] " alt="" />
           </div>
@@ -57,9 +69,16 @@ function Navbar() {
           </span>
         </div>
         <div className="flex gap-9 items-center justify-center">
-          <Link to="/cart">
-            <FiShoppingCart className="text-black text-2xl" />
-          </Link>
+          <div className="relative">
+            <Link to="/cart">
+              <FiShoppingCart className="text-black text-xl lg:text-2xl" />
+            </Link>
+            {items.length > 0 && (
+              <div className="bg-red-500 font-gilroyRegular p-2 w-4 h-4 text-[12px] text-white flex items-center justify-center -top-2 -right-2 rounded-full absolute">
+                {items.length}
+              </div>
+            )}
+          </div>
           <div
             className={`w-6 h-8  relative ${navIcon ? "" : "top-2"} `}
             onClick={handleNav}

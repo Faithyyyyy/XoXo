@@ -1,12 +1,22 @@
 import { spiralArrow } from "../assets/AllImages";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../App";
 import { FiSearch } from "react-icons/fi";
-// import ProductCard from "./ProductsCard";
+import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
+import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 function Products() {
+  const navigate = useNavigate();
   const { data, isLoading } = useContext(UserContext);
   const allProduct = data?.data;
+  const [likedItem, setLikedItems] = useState(false);
+  // Logic for set Liked items
+  const handledLikedItems = (id) => {
+    setLikedItems(!likedItem);
+  };
+  // Logic for set Liked items
 
   return (
     <section className="mt-14 px-5 max-w-7xl mx-auto font-gilroyMedium">
@@ -59,20 +69,45 @@ function Products() {
             </div>
           ))}
         {allProduct?.map((card) => {
+          const idString = (id) => {
+            return String(id).toLowerCase().split(" ").join("");
+          };
+          const rootId = idString(card.title);
+          // Logic for Navigating to detailed items
+          const handleDetails = () => {
+            navigate(`product/${rootId}`, { state: { item: card } });
+          };
+          // Logic for Navigating to detailed items
           return (
-            <div className="relative">
-              <img
-                src={card.image}
-                alt=""
-                className="h-96 w-full object-cover rounded-md"
-              />
-
+            <div
+              // to={`/product/${card._id}`}
+              className="relative cursor-pointer"
+              key={card._id}
+              onClick={handleDetails}
+            >
+              <div className="overflow-hidden w-full">
+                <img
+                  src={card.image}
+                  alt=""
+                  className="h-96 w-full overflow-hidden object-cover rounded-md hover:scale-110 duration-500"
+                />
+              </div>
+              <div
+                className="bg-white absolute p-3 rounded-full bottom-[98px] left-6"
+                onClick={handledLikedItems}
+              >
+                {likedItem ? (
+                  <AiFillHeart className="text-2xl text-red-500" />
+                ) : (
+                  <AiOutlineHeart className="text-2xl text-gray-600" />
+                )}
+              </div>
               <div className="mt-4 flex justify-between">
                 <div>
-                  <p className="font-gilroyBold text-lg mb-3">{card.title}</p>
+                  <p className="font-gilroyBold  text-lg mb-1">{card.title}</p>
                   <p className="text-gray-400 text-base">{card.category}</p>
                 </div>
-                <div className="btn px-7 h-10 flex justify-center items-center font-gilroyBold rounded-md">
+                <div className="btn px-7 h-10 flex justify-center items-center font-gilroyBold text-gray-600 rounded-md">
                   ${card.price}
                 </div>
               </div>
