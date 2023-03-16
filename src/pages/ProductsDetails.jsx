@@ -1,16 +1,28 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
+import { UserContext } from "../App";
 import { ToastContainer, toast } from "react-toastify";
 import { Link, useLocation } from "react-router-dom";
 import { AppContext } from "../context";
+import AOS from "aos";
+import "aos/dist/aos.css";
 function ProductDetails() {
-  const { increaseQty, baseQty, decreaseQty, AddtoCart, items } =
-    useContext(AppContext);
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  });
+  const { increaseQty, decreaseQty, AddtoCart, items } = useContext(AppContext);
+  const { data, isLoading } = useContext(UserContext);
+  let [baseQty, setBaseQty] = useState(1);
+
+  const allProduct = data?.data;
 
   const location = useLocation();
   const singleData = location.state.item;
-
+  const customId = "custom-id-yes";
   return (
-    <div className="px-5 max-w-7xl mt-16 mx-auto xl:px-0 font-gilroyRegular">
+    <div
+      className="px-5 max-w-7xl mt-16 mx-auto xl:px-0 font-gilroyRegular "
+      data-aos="fade"
+    >
       <div className="flex flex-col lg:flex-row gap-12 items-center">
         <img
           src={singleData.image}
@@ -38,14 +50,18 @@ function ProductDetails() {
               </p>
               <div className="flex items-center gap-4 text-sm font-semibold">
                 <button
-                  onClick={() => decreaseQty()}
+                  onClick={() =>
+                    setBaseQty(baseQty === 1 ? (baseQty = 1) : baseQty - 1)
+                  }
                   className="border h-6  text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black"
                 >
                   -
                 </button>
-                {baseQty}
+                <p>{baseQty}</p>
                 <button
-                  onClick={() => increaseQty()}
+                  onClick={() =>
+                    setBaseQty(baseQty === 10 ? (baseQty = 10) : baseQty + 1)
+                  }
                   className="border h-6 font-normal text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black"
                 >
                   +
@@ -54,17 +70,22 @@ function ProductDetails() {
             </div>
             <button
               onClick={() =>
-                AddtoCart(singleData._id, singleData.price, singleData.image) &
-                toast.success(`${singleData.title} is added to cart`) &
-                items.find((x = x.id === singleData._id))
-                  ? toast.success(
-                      `${singleData.title} is already in the cart. Please rest!`
-                    )
-                  : toast.success(
-                      `${singleData.title} is already in the cart. Please rest!`
-                    )
+                AddtoCart(
+                  singleData._id,
+                  singleData.price,
+                  singleData.image,
+                  singleData.title,
+                  baseQty
+                ) &
+                toast.success(`${singleData.title} is added to cart`, {
+                  toastId: customId,
+                })
               }
-              className={`h-12 px-8 rounded-sm text-lg bg-black text-white`}
+              className={`h-12 px-8 rounded-sm text-lg bg-black text-white ${
+                items.find((data) => data.id === singleData._id)
+                  ? " pointer-events-none opacity-30"
+                  : " "
+              }`}
             >
               Add to Cart
             </button>
@@ -78,7 +99,7 @@ function ProductDetails() {
         </div>
       </div>
       <ToastContainer
-        position="top-left"
+        position="bottom-center"
         autoClose={2000}
         hideProgressBar={true}
         newestOnTop={false}

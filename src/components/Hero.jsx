@@ -1,13 +1,22 @@
 import { spiralArrow } from "../assets/AllImages";
 import { HeroImg } from "../assets/AllImages";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 import Button from "./button";
 function Hero() {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  });
   return (
     <section className="my-16 px-5 max-w-7xl mx-auto">
       <div className="flex flex-col gap-7 md:flex-row items-center justify-between">
         {/* First Section */}
-        <div className="font-gilroyRegular max-w-[600px] xl:max-w-[700px]">
+        <div
+          className="font-gilroyRegular max-w-[600px] xl:max-w-[700px]"
+          data-aos="zoom-in"
+        >
           <p className="text-gray-400 text-left">
             Absolutely Hot Collections🔥
           </p>
@@ -34,7 +43,7 @@ function Hero() {
             </button>
           </div>
         </div>
-        <div className="w-full max-w-[500px]">
+        <div className="w-full max-w-[500px]" data-aos="zoom-in">
           <img src={HeroImg} alt="" />
         </div>
       </div>

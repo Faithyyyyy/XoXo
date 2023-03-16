@@ -12,10 +12,12 @@ import ContactUs from "./pages/Contact";
 import Home from "./pages/Home.jsx";
 import ProductDetails from "./pages/ProductsDetails";
 import { useAsync } from "./useQuery";
+
 export const UserContext = createContext();
 AppProvider;
 function App() {
   const [cart, setCart] = useState([]);
+
   // logic for context
   // logic for mobile nav
   const { isLoading, data, error, isError, isFetching } = useAsync();

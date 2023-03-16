@@ -4,10 +4,16 @@ import { NavLink, Link } from "react-router-dom";
 import { useState } from "react";
 import { useContext } from "react";
 import { AppContext } from "../context";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 function Navbar() {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  });
   const { items } = useContext(AppContext);
-  console.log(items.length);
+  // console.log(items.length);
   const [navIcon, setNavIcon] = useState(false);
   const handleNav = () => {
     setNavIcon(!navIcon);
@@ -105,6 +111,7 @@ function Navbar() {
         className={`h-full bg-white w-[80%] px-8 absolute top-0 left-0 py-20 z-10   ${
           navIcon ? "block" : "hidden"
         } mobilNav`}
+        data-aos="slide-right"
       >
         <nav className="nav flex flex-col gap-12 text-lg">
           <NavLink to="/" className="font-gilroyRegular">

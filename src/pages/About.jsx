@@ -1,12 +1,26 @@
-import Navbar from "../components/Navbar";
 import { about_xoxo } from "../assets/AllImages";
-import Footer from "../components/Footer";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+
 function AboutUs() {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  });
+
   return (
     <div>
       <main className="mt-12 px-5 max-w-7xl mx-auto">
-        <h2 className="font-gilroyMedium text-3xl text-center">About Us</h2>
-        <p className="font-gilroyRegular  md:text-xl mt-9 text-center">
+        <h2
+          className="font-gilroyMedium text-3xl text-center"
+          data-aos="zoom-in"
+        >
+          About Us
+        </h2>
+        <p
+          className="font-gilroyRegular  md:text-xl mt-9 text-center"
+          data-aos="fade"
+        >
           XOXO IS… WHERE FUN MEETS FASHION & CLASS AT AFFORDABLE PRICES!
         </p>
         <div className="mt-20 flex flex-col lg:flex-row bg-[#f289ff] bg-opacity-10 w-full rounded px-9 py-2 gap-10 items-center">
@@ -14,8 +28,9 @@ function AboutUs() {
             src={about_xoxo}
             alt="about us"
             className="w-full  max-w-[500px]"
+            data-aos="fade-right"
           />
-          <div>
+          <div data-aos="fade-left">
             <h5 className="text-3xl font-gilroyMedium mb-6">
               OUR LITTLE <br /> N I C H E
             </h5>
@@ -33,7 +48,10 @@ function AboutUs() {
           </div>
         </div>
         {/* Our Mission */}
-        <div className="mt-12 flex flex-col md:flex-row gap-8 items-center justify-center">
+        <div
+          className="mt-12 flex flex-col md:flex-row gap-8 items-center justify-center"
+          data-aos="fade-right"
+        >
           <div className="wrapper max-w-[400px]">
             <p className="font-gilroyRegular">
               <span className="font-gilroyBold">Our Mission</span> is to make a
@@ -41,7 +59,7 @@ function AboutUs() {
               trends, defining style and giving customers what they want.
             </p>
           </div>
-          <div className="wrapper max-w-[400px]">
+          <div className="wrapper max-w-[400px]" data-aos="fade-left">
             <p className="font-gilroyRegular">
               <span className="font-gilroyBold">Our Vision</span> is to change
               the way our society connects with the fashion industry by
