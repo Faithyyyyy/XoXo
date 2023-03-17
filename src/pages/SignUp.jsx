@@ -3,6 +3,8 @@ import "aos/dist/aos.css";
 import { useEffect } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { auth } from "../Auth/Firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const scheme = yup.object().shape({
   name: yup.string().required("Required"),
@@ -10,14 +12,18 @@ const scheme = yup.object().shape({
   password: yup.string().min(5).required("Required"),
 });
 
-const onSubmit = () => {
-  console.log("submitted🎉");
-};
-
 function signup() {
   useEffect(() => {
     AOS.init({ duration: 1000 });
   });
+  const onSubmit = () => {
+    createUserWithEmailAndPassword(auth, values.email, values.password)
+      .then((usecredentials) => {
+        console.log(usecredentials);
+      })
+      .catch((error) => console.log(error));
+    console.log("submitted🎉");
+  };
 
   const { values, handleChange, errors, handleSubmit } = useFormik({
     initialValues: {

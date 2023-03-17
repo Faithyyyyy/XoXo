@@ -9,7 +9,7 @@ function CartItems() {
   const { decrementQty, items, removeOneFromCart, incrementQty } =
     useContext(AppContext);
   useEffect(() => {
-    AOS.init({ duration: 2000 });
+    AOS.init({ duration: 1000 });
   });
 
   return (

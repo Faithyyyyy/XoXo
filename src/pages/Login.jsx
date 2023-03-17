@@ -4,20 +4,26 @@ import { useEffect } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
+import { auth } from "../Auth/Firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const scheme = yup.object().shape({
   email: yup.string().email("Please enter a valid Email").required("Required"),
   password: yup.string().required("Required"),
 });
 
-const onSubmit = () => {
-  console.log("submitted🎉");
-};
-
 function Login() {
   useEffect(() => {
     AOS.init({ duration: 1000 });
   });
+  const onSubmit = () => {
+    signInWithEmailAndPassword(auth, values.email, values.password)
+      .then((usecredentials) => {
+        console.log(usecredentials);
+      })
+      .catch((error) => console.log(error));
+    console.log("submitted🎉");
+  };
 
   const { values, handleChange, errors, handleSubmit } = useFormik({
     initialValues: {
@@ -27,7 +33,7 @@ function Login() {
     validationSchema: scheme,
     onSubmit,
   });
-  console.log(errors);
+
   return (
     <div className="max-w-7xl mx-auto px-5 lg:px-0" data-aos="fade">
       <h2 className="font-gilroyMedium text-3xl text-center mt-16">LOGIN</h2>
