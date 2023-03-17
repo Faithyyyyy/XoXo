@@ -64,9 +64,15 @@ function Navbar() {
               </div>
             )}
           </div>
-          <div className="h-7 w-7 md:w-10 md:h-10 cursor-pointer">
+          <Link
+            to="/login"
+            className=" cursor-pointer uppercase font-gilroyMedium"
+          >
+            Login
+          </Link>
+          {/* <div className="h-7 w-7 md:w-10 md:h-10 cursor-pointer">
             <img src={fakeAvatar} className="rounded-[50%] " alt="" />
-          </div>
+          </div> */}
         </div>
       </nav>
       {/* mobile render */}

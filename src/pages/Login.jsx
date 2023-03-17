@@ -16,7 +16,7 @@ const onSubmit = () => {
 
 function Login() {
   useEffect(() => {
-    AOS.init({ duration: 2000 });
+    AOS.init({ duration: 1000 });
   });
 
   const { values, handleChange, errors, handleSubmit } = useFormik({
@@ -29,7 +29,7 @@ function Login() {
   });
   console.log(errors);
   return (
-    <div className="max-w-7xl mx-auto px-5 lg:px-0">
+    <div className="max-w-7xl mx-auto px-5 lg:px-0" data-aos="fade">
       <h2 className="font-gilroyMedium text-3xl text-center mt-16">LOGIN</h2>
 
       <form
