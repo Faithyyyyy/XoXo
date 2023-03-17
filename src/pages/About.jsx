@@ -10,13 +10,8 @@ function AboutUs() {
 
   return (
     <div>
-      <main className="mt-12 px-5 max-w-7xl mx-auto">
-        <h2
-          className="font-gilroyMedium text-3xl text-center"
-          data-aos="zoom-in"
-        >
-          About Us
-        </h2>
+      <main className="mt-12 px-5 max-w-7xl mx-auto" data-aos="fade">
+        <h2 className="font-gilroyMedium text-3xl text-center">About Us</h2>
         <p
           className="font-gilroyRegular  md:text-xl mt-9 text-center"
           data-aos="fade"
@@ -28,9 +23,9 @@ function AboutUs() {
             src={about_xoxo}
             alt="about us"
             className="w-full  max-w-[500px]"
-            data-aos="fade-right"
+            data-aos="zoom-in"
           />
-          <div data-aos="fade-left">
+          <div>
             <h5 className="text-3xl font-gilroyMedium mb-6">
               OUR LITTLE <br /> N I C H E
             </h5>

@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { AppContext } from "../context";
 import AOS from "aos";
 import "aos/dist/aos.css";
+
 function ProductDetails() {
   useEffect(() => {
     AOS.init({ duration: 2000 });
@@ -99,7 +100,7 @@ function ProductDetails() {
         </div>
       </div>
       <ToastContainer
-        position="bottom-center"
+        position="top-left"
         autoClose={2000}
         hideProgressBar={true}
         newestOnTop={false}

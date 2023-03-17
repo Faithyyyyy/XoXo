@@ -8,33 +8,32 @@ export const AppContext = createContext({
   removeOneFromCart: () => {},
   deleteFromCart: () => {},
   incrementQty: () => {},
+  decrementQty: () => {},
   //   getTotalCost: () => {},
 });
 
 export function AppProvider({ children }) {
   const [cartProducts, setCartProducts] = useState([]);
 
-  const incrementQty = (id) => {
-    const prodt = cartProducts.find((cartProduct) => {
-      id === cartProduct.id;
-    });
-    if (prodt) {
-      prodt.quantity++;
-    }
-  };
+  const decrementQty = (id) => {
+    // cartProducts.map((ite) => {
+    //   if (ite.id === id) {
+    //     ite.quantity++;
+    //   }
+    // });
 
-  // const decrementQty = (id) => {
-  //   setCartProducts((cartProduct) =>
-  //     cartProduct.map((item) =>
-  //       id === item.id
-  //         ? {
-  //             ...item,
-  //             qty: item.qty - (item.qty > 1 ? 1 : 0),
-  //           }
-  //         : item
-  //     )
-  //   );
-  // };
+    cartProducts.find((ite) => {
+      if (ite.id === id) {
+        setCartProducts([
+          ...cartProducts,
+          {
+            ...ite,
+            quantity: ite.quantity === 1 ? (ite.quantity = 1) : ite.quantity--,
+          },
+        ]);
+      }
+    });
+  };
 
   const getProductQuantity = (id) => {
     const quantity = cartProducts.find(
@@ -69,6 +68,16 @@ export function AppProvider({ children }) {
       }
     }
   };
+
+  const incrementQty = (id) => {
+    const prodt = cartProducts.find((pr) => {
+      return id === pr.id;
+    });
+    if (prodt) {
+      return prodt.quantity++;
+    }
+  };
+
   const deleteFromCart = () => {
     setCartProducts([]);
   };
@@ -86,7 +95,7 @@ export function AppProvider({ children }) {
       value={{
         items: cartProducts,
         AddtoCart,
-
+        decrementQty,
         checkProductExistence,
         deleteFromCart,
         removeOneFromCart,

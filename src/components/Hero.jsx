@@ -15,7 +15,7 @@ function Hero() {
         {/* First Section */}
         <div
           className="font-gilroyRegular max-w-[600px] xl:max-w-[700px]"
-          data-aos="zoom-in"
+          data-aos="fade-in"
         >
           <p className="text-gray-400 text-left">
             Absolutely Hot Collections🔥
@@ -43,7 +43,7 @@ function Hero() {
             </button>
           </div>
         </div>
-        <div className="w-full max-w-[500px]" data-aos="zoom-in">
+        <div className="w-full max-w-[500px]">
           <img src={HeroImg} alt="" />
         </div>
       </div>

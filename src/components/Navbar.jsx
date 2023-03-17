@@ -33,18 +33,21 @@ function Navbar() {
             role="menu"
             className="sm:gap-10 md:gap-16  hidden md:flex  cursor-pointer    font-gilroyRegular "
           >
-            <li className="text-lg text-black cursor-pointer">
-              <NavLink to="/" className="nav">
+            <li className="text-lg text-black  cursor-pointer">
+              <NavLink to="/" className="nav font-gilroyMedium">
                 Home
               </NavLink>
             </li>
-            <li className="text-lg cursor-pointer">
-              <NavLink to="/about" className="text-black nav">
+            <li className="text-lg  cursor-pointer">
+              <NavLink to="/about" className="text-black nav font-gilroyMedium">
                 About
               </NavLink>
             </li>
-            <li className="text-lg ">
-              <NavLink to="/contact" className="text-black nav">
+            <li className="text-lg  ">
+              <NavLink
+                to="/contact"
+                className="text-black nav font-gilroyMedium"
+              >
                 Contact Us
               </NavLink>
             </li>
@@ -53,7 +56,7 @@ function Navbar() {
         <div className="flex gap-5 items-center justify-center">
           <div className="relative">
             <Link to="/cart">
-              <FiShoppingCart className="text-black text-xl lg:text-2xl" />
+              <FiShoppingCart className="text-black text-xl lg:text-[28px]" />
             </Link>
             {items.length > 0 && (
               <div className="bg-red-500 font-gilroyRegular p-2 w-4 h-4 text-[12px] text-white flex items-center justify-center -top-2 -right-2 rounded-full absolute">
@@ -108,7 +111,7 @@ function Navbar() {
         </div>
       </div>
       <div
-        className={`h-full bg-white w-[80%] px-8 absolute top-0 left-0 py-20 z-10   ${
+        className={`h-full bg-white w-[80%] px-8 absolute top-0 left-0 py-20 z-10 md:hidden  ${
           navIcon ? "block" : "hidden"
         } mobilNav`}
         data-aos="slide-right"
