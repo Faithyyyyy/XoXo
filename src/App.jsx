@@ -15,7 +15,6 @@ import ProductDetails from "./pages/ProductsDetails";
 import Signup from "./pages/SignUp";
 import { useAsync } from "./useQuery";
 export const UserContext = createContext();
-AppProvider;
 function App() {
   const [cart, setCart] = useState([]);
 

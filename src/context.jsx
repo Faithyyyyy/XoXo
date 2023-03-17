@@ -1,9 +1,11 @@
-import { createContext, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { createContext, useEffect, useState } from "react";
+import { auth } from "./Auth/Firebase";
 
 export const AppContext = createContext({
   items: [],
   addToCart: () => {},
-
+  // Authuser: Authuser,
   checkProductExistence: () => {},
   removeOneFromCart: () => {},
   deleteFromCart: () => {},
@@ -14,14 +16,9 @@ export const AppContext = createContext({
 
 export function AppProvider({ children }) {
   const [cartProducts, setCartProducts] = useState([]);
+  const [Authuser, SetAuthUser] = useState("");
 
   const decrementQty = (id) => {
-    // cartProducts.map((ite) => {
-    //   if (ite.id === id) {
-    //     ite.quantity++;
-    //   }
-    // });
-
     cartProducts.find((ite) => {
       if (ite.id === id) {
         setCartProducts([
@@ -90,6 +87,16 @@ export function AppProvider({ children }) {
     );
   };
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log(user.email);
+      SetAuthUser(user.email);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   return (
     <AppContext.Provider
       value={{
@@ -100,6 +107,7 @@ export function AppProvider({ children }) {
         deleteFromCart,
         removeOneFromCart,
         incrementQty,
+        Authuser: Authuser,
       }}
     >
       {children}

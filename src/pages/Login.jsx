@@ -3,7 +3,7 @@ import "aos/dist/aos.css";
 import { useEffect } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../Auth/Firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
@@ -11,8 +11,9 @@ const scheme = yup.object().shape({
   email: yup.string().email("Please enter a valid Email").required("Required"),
   password: yup.string().required("Required"),
 });
-
 function Login() {
+  const navigate = useNavigate();
+
   useEffect(() => {
     AOS.init({ duration: 1000 });
   });
@@ -20,6 +21,7 @@ function Login() {
     signInWithEmailAndPassword(auth, values.email, values.password)
       .then((usecredentials) => {
         console.log(usecredentials);
+        navigate("/");
       })
       .catch((error) => console.log(error));
     console.log("submitted🎉");

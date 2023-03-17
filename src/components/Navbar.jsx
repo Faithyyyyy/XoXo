@@ -1,5 +1,4 @@
 import { FiShoppingCart } from "react-icons/fi";
-import fakeAvatar from "../assets/fakeAvatar.webp";
 import { NavLink, Link } from "react-router-dom";
 import { useState } from "react";
 import { useContext } from "react";
@@ -12,7 +11,7 @@ function Navbar() {
   useEffect(() => {
     AOS.init({ duration: 1000 });
   });
-  const { items } = useContext(AppContext);
+  const { items, Authuser } = useContext(AppContext);
   // console.log(items.length);
   const [navIcon, setNavIcon] = useState(false);
   const handleNav = () => {
@@ -70,9 +69,6 @@ function Navbar() {
           >
             Login
           </Link>
-          {/* <div className="h-7 w-7 md:w-10 md:h-10 cursor-pointer">
-            <img src={fakeAvatar} className="rounded-[50%] " alt="" />
-          </div> */}
         </div>
       </nav>
       {/* mobile render */}

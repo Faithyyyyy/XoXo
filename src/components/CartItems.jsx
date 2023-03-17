@@ -1,7 +1,6 @@
 import { AppContext } from "../context";
 import { MdClose } from "react-icons/md";
 import { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
