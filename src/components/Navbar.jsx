@@ -8,14 +8,27 @@ import "aos/dist/aos.css";
 import { useEffect } from "react";
 
 function Navbar() {
+  const [closeNavbar, setcloseNavbar] = useState(false);
+  const [errorBoundary, setErrorBoundary] = useState(false);
+  const closeNav = () => {
+    closeNav(true);
+  };
   useEffect(() => {
     AOS.init({ duration: 1000 });
   });
-  const { items, Authuser } = useContext(AppContext);
+  const { items, Authuser, logout } = useContext(AppContext);
   // console.log(items.length);
   const [navIcon, setNavIcon] = useState(false);
   const handleNav = () => {
     setNavIcon(!navIcon);
+  };
+  const handleLogout = () => {
+    try {
+      logout();
+      // closeNav();
+    } catch (error) {
+      setErrorBoundary(true);
+    }
   };
   return (
     <header className="pt-10 px-5 max-w-7xl xl:px-0 mx-auto z-50">
@@ -63,12 +76,26 @@ function Navbar() {
               </div>
             )}
           </div>
+          {Authuser ? (
+            <button
+              onClick={handleLogout}
+              className=" cursor-pointer uppercase font-gilroyMedium"
+            >
+              logout
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className=" cursor-pointer uppercase font-gilroyMedium"
+            >
+              login
+            </Link>
+          )}
+
           <Link
             to="/login"
             className=" cursor-pointer uppercase font-gilroyMedium"
-          >
-            Login
-          </Link>
+          ></Link>
         </div>
       </nav>
       {/* mobile render */}
@@ -119,20 +146,30 @@ function Navbar() {
         data-aos="slide-right"
       >
         <nav className="nav flex flex-col gap-12 text-lg">
-          <NavLink to="/" className="font-gilroyRegular">
+          <NavLink to="/" className="font-gilroyMedium " onClick={closeNav}>
             Home
           </NavLink>
-          <Link to="/about" className="font-gilroyRegular">
+          <Link to="/about" className="font-gilroyMedium" onClick={closeNav}>
             About us
           </Link>
-          <Link to="/contact" className="font-gilroyRegular">
+          <Link to="/contact" className="font-gilroyMedium" onClick={closeNav}>
             Contact Us
           </Link>
-          <Link to="/login" className="font-gilroyRegular">
-            Login
-          </Link>
+          {Authuser ? (
+            <button
+              onClick={handleLogout}
+              className=" border-t pt-3 font-gilroyMedium"
+            >
+              logout
+            </button>
+          ) : (
+            <Link to="/login" className="font-gilroyMedium" onClick={closeNav}>
+              Login
+            </Link>
+          )}
         </nav>
       </div>
+
       {/* mobile render */}
     </header>
   );

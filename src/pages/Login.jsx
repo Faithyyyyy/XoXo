@@ -1,6 +1,6 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
@@ -17,14 +17,13 @@ function Login() {
   useEffect(() => {
     AOS.init({ duration: 1000 });
   });
+  const [errorBoundary, setErrorBoundary] = useState(false);
   const onSubmit = () => {
     signInWithEmailAndPassword(auth, values.email, values.password)
       .then((usecredentials) => {
-        console.log(usecredentials);
         navigate("/");
       })
-      .catch((error) => console.log(error));
-    console.log("submitted🎉");
+      .catch((error) => setErrorBoundary(true));
   };
 
   const { values, handleChange, errors, handleSubmit } = useFormik({
@@ -44,6 +43,14 @@ function Login() {
         onSubmit={handleSubmit}
         className="max-w-[700px] mx-auto font-gilroyMedium"
       >
+        {errorBoundary && (
+          <p
+            className=" text-center  mt-10 text-red-500 text-sm"
+            data-aos="fade"
+          >
+            Wrong Email or Password
+          </p>
+        )}
         <div className="mb-10">
           <label>Email</label>
           <input

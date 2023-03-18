@@ -1,6 +1,5 @@
 import Hero from "../components/Hero";
 import Products from "../components/products";
-
 function Home() {
   return (
     <>

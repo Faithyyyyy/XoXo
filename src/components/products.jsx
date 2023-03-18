@@ -92,16 +92,7 @@ function Products() {
                   className="h-96 w-full overflow-hidden object-cover rounded-md hover:scale-110 duration-500"
                 />
               </div>
-              <div
-                className="bg-white absolute p-3 rounded-full bottom-[98px] left-6"
-                onClick={handledLikedItems}
-              >
-                {likedItem ? (
-                  <AiFillHeart className="text-2xl text-red-500" />
-                ) : (
-                  <AiOutlineHeart className="text-2xl text-gray-600" />
-                )}
-              </div>
+
               <div className="mt-4 flex justify-between">
                 <div>
                   <p className="font-gilroyBold  text-lg mb-1">{card.title}</p>

@@ -4,10 +4,24 @@ import { AppContext } from "../context";
 import { useContext, useState, useEffect } from "react";
 import EmptyCart from "../components/EmptyCart";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+
 function Cart() {
-  const { deleteFromCart, items } = useContext(AppContext);
+  const { deleteFromCart, items, Authuser } = useContext(AppContext);
   const [totalAmount, setTotalAmount] = useState("");
   let shipping = 10.05;
+  const [ShowPay, setShowPay] = useState(false);
+  const customId = "custom-id-yes";
+
+  const handleChange = () => {
+    if (Authuser) {
+      setShowPay(true);
+    } else {
+      toast.success(`Please Login to proceed with checkout`, {
+        toastId: customId,
+      });
+    }
+  };
 
   useEffect(() => {
     let totalPrice = 0;
@@ -27,10 +41,10 @@ function Cart() {
       {/* <img src={cartBg} alt="" className="h-[200px] w-full mb-10" /> */}
       <div className="flex justify-between px-5 xl:px-0">
         <h2 className="font-gilroyBold text-lg lg:text-2xl">Shopping cart</h2>
-        <MdClose
-          className="mb-4 text-3xl md:mb-0  cursor-pointer "
-          onClick={() => deleteFromCart()}
-        />
+        <button onClick={() => deleteFromCart()}>
+          Clear cart
+          {/* <MdClose className={`mb-4 text-sm md:mb-0  cursor-pointer  `} /> */}
+        </button>
       </div>
       <div className=" ">
         <CartItems />
@@ -56,7 +70,12 @@ function Cart() {
           </div>
           {/* second part of the details */}
           <div className="lg:order-1 flex flex-col gap-4 justify-center items-center md:items-start">
-            <button className="bg-black px-8 py-4 rounded text-white w-full">
+            <button
+              onClick={() => {
+                handleChange();
+              }}
+              className="bg-black px-8 py-4 rounded text-white w-full"
+            >
               Proceed to Checkout
             </button>
             <Link to="/" className="font-gilroyBold underline text-lg">
@@ -66,6 +85,18 @@ function Cart() {
           {/* second part of the details */}
         </div>
       </div>
+      <ToastContainer
+        position="top-left"
+        autoClose={3000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "./Auth/Firebase";
 
@@ -11,6 +11,7 @@ export const AppContext = createContext({
   deleteFromCart: () => {},
   incrementQty: () => {},
   decrementQty: () => {},
+  logout: () => {},
   //   getTotalCost: () => {},
 });
 
@@ -89,13 +90,19 @@ export function AppProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log(user.email);
-      SetAuthUser(user.email);
+      if (user) {
+        SetAuthUser(user);
+      } else {
+        SetAuthUser(null);
+      }
     });
     return () => {
       unsubscribe();
     };
   }, []);
+  const logout = () => {
+    return signOut(auth);
+  };
 
   return (
     <AppContext.Provider
@@ -108,6 +115,7 @@ export function AppProvider({ children }) {
         removeOneFromCart,
         incrementQty,
         Authuser: Authuser,
+        logout,
       }}
     >
       {children}
