@@ -1,28 +1,35 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { auth } from "../Auth/Firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const scheme = yup.object().shape({
   name: yup.string().required("Required"),
   email: yup.string().email("Please enter a valid Email").required("Required"),
-  password: yup.string().min(5).required("Required"),
+  password: yup
+    .string()
+    .min(6)
+    .required("Required with a minimum of 6 characters"),
 });
 
-function signup() {
+function Signup() {
+  const navigate = useNavigate();
+  const [errorBoundary, setErrorBoundary] = useState(false);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     AOS.init({ duration: 1000 });
   });
   const onSubmit = () => {
+    setLoading(true);
     createUserWithEmailAndPassword(auth, values.email, values.password)
       .then((usecredentials) => {
-        console.log(usecredentials);
+        navigate("/");
       })
-      .catch((error) => console.log(error));
-    console.log("submitted🎉");
+      .catch((error) => setErrorBoundary(true));
   };
 
   const { values, handleChange, errors, handleSubmit } = useFormik({
@@ -34,7 +41,6 @@ function signup() {
     validationSchema: scheme,
     onSubmit,
   });
-  console.log(errors);
   return (
     <div className="max-w-7xl mx-auto px-5 lg:px-0" data-aos="fade">
       <h2 className="font-gilroyMedium text-3xl text-center mt-16">SIGN UP</h2>
@@ -43,6 +49,14 @@ function signup() {
         onSubmit={handleSubmit}
         className="max-w-[700px] mx-auto font-gilroyMedium"
       >
+        {errorBoundary && (
+          <p
+            className=" text-center  mt-10 text-red-500 text-sm"
+            data-aos="fade"
+          >
+            Input the right Information
+          </p>
+        )}
         <div className="mb-10">
           <label>Full name</label>
           <input
@@ -86,7 +100,9 @@ function signup() {
         </div>
         <button
           type="submit"
-          className="uppercase bg-black text-white px-8 py-2 mt-14"
+          className={`uppercase bg-black text-white px-8 py-2 mt-14 ${
+            loading ? "bg-opacity-50" : ""
+          }`}
         >
           {" "}
           sign up
@@ -96,4 +112,4 @@ function signup() {
   );
 }
 
-export default signup;
+export default Signup;

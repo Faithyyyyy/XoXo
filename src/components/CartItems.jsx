@@ -49,19 +49,7 @@ function CartItems() {
                 </p>
 
                 <div className="flex items-center gap-4 text-sm font-semibold">
-                  {/* <button
-                    // onClick={() => decrementQty(item.id)}
-                    className="border h-6  text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black"
-                  >
-                    -
-                  </button> */}
                   {item.quantity}
-                  {/* <button
-                    // onClick={() => incrementQty(item.id)}
-                    className="border h-6 font-normal text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black"
-                  >
-                    +
-                  </button> */}
                 </div>
               </div>
               <p className="font-gilroyMedium text-xl">

@@ -5,6 +5,8 @@ import { useContext, useState, useEffect } from "react";
 import EmptyCart from "../components/EmptyCart";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import StripeCheckout from "react-stripe-checkout";
+import axios from "axios";
 
 function Cart() {
   const { deleteFromCart, items, Authuser } = useContext(AppContext);
@@ -35,7 +37,12 @@ function Cart() {
   if (items.length < 1) {
     return <EmptyCart />;
   }
-
+  const payment = async (token) => {
+    await axios.post("http://localhost:8000/pay", {
+      amount: totalAmount * 100,
+      token: token,
+    });
+  };
   return (
     <div className="font-gilroyRegular max-w-7xl mx-auto mt-8 lg:mt-16">
       {/* <img src={cartBg} alt="" className="h-[200px] w-full mb-10" /> */}
@@ -78,9 +85,24 @@ function Cart() {
             >
               Proceed to Checkout
             </button>
-            <Link to="/" className="font-gilroyBold underline text-lg">
+            {ShowPay ? (
+              <StripeCheckout
+                name="Xoxo Ecommerce store"
+                stripeKey="pk_test_51MmpofIM7SnoQNQVjZDGfyRRzxhwUkT1f9mAq8yxAo2sTYNRvrAtNoJzDE8eUeui3YT86s9NvhIIgCgB4PXxNcba00OFGyPIgi"
+                amount={totalAmount * 100}
+                label="Pay with Stripe"
+                description={`Your Payment amount is ${totalAmount}`}
+                token={payment}
+                email={Authuser.email}
+              />
+            ) : (
+              <Link to="/" className="font-gilroyBold underline text-lg">
+                Continue Shopping
+              </Link>
+            )}
+            {/* <Link to="/" className="font-gilroyBold underline text-lg">
               Continue Shopping
-            </Link>
+            </Link> */}
           </div>
           {/* second part of the details */}
         </div>
