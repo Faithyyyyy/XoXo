@@ -60,18 +60,6 @@ function Cart() {
         console.error(e.error);
       });
   };
-  useEffect(() => {
-    // Check to see if this is a redirect back from Checkout
-    const query = new URLSearchParams(window.location.search);
-
-    if (query.get("success")) {
-      return <Success />;
-    }
-
-    if (query.get("canceled")) {
-      return <Home />;
-    }
-  }, []);
 
   return (
     <div className="font-gilroyRegular max-w-7xl mx-auto mt-8 lg:mt-16">
