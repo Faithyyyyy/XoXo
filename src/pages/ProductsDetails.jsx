@@ -15,7 +15,7 @@ function ProductDetails() {
   let [baseQty, setBaseQty] = useState(1);
 
   const allProduct = data?.data;
-
+  let a = baseQty;
   const location = useLocation();
   const singleData = location.state.item;
   const customId = "custom-id-yes";
@@ -82,11 +82,13 @@ function ProductDetails() {
                   toastId: customId,
                 })
               }
-              className={`h-12 px-8 rounded-sm text-lg bg-black text-white ${
+              className={`h-12 px-8 rounded-sm text-lg bg-black text-white 
+              ${
                 items.find((data) => data.id === singleData._id)
                   ? " pointer-events-none opacity-30"
                   : " "
-              }`}
+              } 
+              `}
             >
               Add to Cart
             </button>

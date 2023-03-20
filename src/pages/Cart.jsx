@@ -1,29 +1,29 @@
-import { MdClose } from "react-icons/md";
 import CartItems from "../components/CartItems";
 import { AppContext } from "../context";
 import { useContext, useState, useEffect } from "react";
 import EmptyCart from "../components/EmptyCart";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import StripeCheckout from "react-stripe-checkout";
-import axios from "axios";
+
+import Success from "./Success";
+import Home from "./Home";
 
 function Cart() {
   const { deleteFromCart, items, Authuser } = useContext(AppContext);
   const [totalAmount, setTotalAmount] = useState("");
   let shipping = 10.05;
-  const [ShowPay, setShowPay] = useState(false);
+  // const [ShowPay, setShowPay] = useState(false);
   const customId = "custom-id-yes";
 
-  const handleChange = () => {
-    if (Authuser) {
-      setShowPay(true);
-    } else {
-      toast.success(`Please Login to proceed with checkout`, {
-        toastId: customId,
-      });
-    }
-  };
+  // const handleChange = () => {
+  //   if (Authuser) {
+  //     handleCheckout();
+  //   } else {
+  //     toast.success(`Please Login to proceed with checkout`, {
+  //       toastId: customId,
+  //     });
+  //   }
+  // };
 
   useEffect(() => {
     let totalPrice = 0;
@@ -37,21 +37,47 @@ function Cart() {
   if (items.length < 1) {
     return <EmptyCart />;
   }
-  const payment = async (token) => {
-    await axios.post("http://localhost:8000/pay", {
-      amount: totalAmount * 100,
-      token: token,
-    });
+
+  const handleCheckout = () => {
+    fetch("http://localhost:3000/create-checkout-session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        items: items,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) return res.json();
+        return res.json().then((json) => Promise.reject(json));
+      })
+      .then(({ url }) => {
+        window.location = url;
+        // console.log(url);
+      })
+      .catch((e) => {
+        console.error(e.error);
+      });
   };
+  useEffect(() => {
+    // Check to see if this is a redirect back from Checkout
+    const query = new URLSearchParams(window.location.search);
+
+    if (query.get("success")) {
+      return <Success />;
+    }
+
+    if (query.get("canceled")) {
+      return <Home />;
+    }
+  }, []);
+
   return (
     <div className="font-gilroyRegular max-w-7xl mx-auto mt-8 lg:mt-16">
-      {/* <img src={cartBg} alt="" className="h-[200px] w-full mb-10" /> */}
       <div className="flex justify-between px-5 xl:px-0">
         <h2 className="font-gilroyBold text-lg lg:text-2xl">Shopping cart</h2>
-        <button onClick={() => deleteFromCart()}>
-          Clear cart
-          {/* <MdClose className={`mb-4 text-sm md:mb-0  cursor-pointer  `} /> */}
-        </button>
+        <button onClick={() => deleteFromCart()}>Clear cart</button>
       </div>
       <div className=" ">
         <CartItems />
@@ -79,32 +105,17 @@ function Cart() {
           <div className="lg:order-1 flex flex-col gap-4 justify-center items-center md:items-start">
             <button
               onClick={() => {
-                handleChange();
+                handleCheckout();
               }}
               className="bg-black px-8 py-4 rounded text-white w-full"
             >
               Proceed to Checkout
             </button>
-            {ShowPay ? (
-              <StripeCheckout
-                name="Xoxo Ecommerce store"
-                stripeKey="pk_test_51MmpofIM7SnoQNQVjZDGfyRRzxhwUkT1f9mAq8yxAo2sTYNRvrAtNoJzDE8eUeui3YT86s9NvhIIgCgB4PXxNcba00OFGyPIgi"
-                amount={totalAmount * 100}
-                label="Pay with Stripe"
-                description={`Your Payment amount is ${totalAmount}`}
-                token={payment}
-                email={Authuser.email}
-              />
-            ) : (
-              <Link to="/" className="font-gilroyBold underline text-lg">
-                Continue Shopping
-              </Link>
-            )}
-            {/* <Link to="/" className="font-gilroyBold underline text-lg">
+
+            <Link to="/" className="font-gilroyBold underline text-lg">
               Continue Shopping
-            </Link> */}
+            </Link>
           </div>
-          {/* second part of the details */}
         </div>
       </div>
       <ToastContainer

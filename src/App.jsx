@@ -1,6 +1,8 @@
 import { createContext, useState } from "react";
 import { Route, Routes } from "react-router";
 import { ScrollRestoration } from "react-router-dom";
+import CheckOut from "./pages/checkOut";
+
 import "./App.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
@@ -14,6 +16,7 @@ import Login from "./pages/Login";
 import ProductDetails from "./pages/ProductsDetails";
 import Signup from "./pages/SignUp";
 import { useAsync } from "./useQuery";
+import Success from "./pages/Success";
 export const UserContext = createContext();
 function App() {
   const [cart, setCart] = useState([]);
@@ -33,6 +36,8 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/checkout-success" element={<CheckOut />} />
+            <Route path="/success" element={<Success />} />
           </Routes>
           <Footer />
         </div>

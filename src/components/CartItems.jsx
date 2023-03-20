@@ -5,8 +5,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 function CartItems() {
-  const { decrementQty, items, removeOneFromCart, incrementQty } =
-    useContext(AppContext);
+  const { items, removeOneFromCart } = useContext(AppContext);
   useEffect(() => {
     AOS.init({ duration: 1000 });
   });
@@ -43,7 +42,7 @@ function CartItems() {
             </p>
             <p className="hidden lg:block">${item.price}</p>
             <div className="flex items-center my-7 md:my-0 md:justify-center gap-10">
-              <div className=" flex gap-3 items-center max-w-[250px] h-12 px-4">
+              <div className=" flex gap-3 items-center max-w-[250px] h-12 md:px-4 ">
                 <p className="font-gilroyRegular text-base text-gray-400">
                   Quantity:
                 </p>
