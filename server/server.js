@@ -11,7 +11,7 @@ app.use(express.static("public"));
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://xoxoapp.netlify.app/"],
+    // origin: ["http://localhost:5173", "https://xoxoapp.netlify.app/"],
   })
 );
 
