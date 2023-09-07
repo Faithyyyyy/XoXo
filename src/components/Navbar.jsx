@@ -31,13 +31,13 @@ function Navbar() {
     }
   };
   return (
-    <header className="pt-10 px-5 max-w-7xl xl:px-0 mx-auto z-50">
+    <header className="pt-7 px-5 max-w-7xl xl:px-0 mx-auto z-50">
       {/* <!-- component --> */}
-      <nav className=" items-center relative justify-between bg-white  py-6 w-full hidden md:flex">
+      <nav className=" items-center relative justify-between bg-white  py-3 w-full hidden md:flex">
         <div className="flex gap-28 items-center">
           <div>
-            <span className="font-eagle text-black cursor-pointer text-2xl">
-              Xoxo.
+            <span className="font-poppins font-bold text-black hover:border-l-slate-500 translate-x-1 transition cursor-pointer text-2xl">
+              Excel
             </span>
           </div>
           <ul
@@ -103,7 +103,7 @@ function Navbar() {
       <div className="flex justify-between items-center px-4 md:hidden mb-16 delay-150 ">
         <div>
           <span className="font-eagle text-black cursor-pointer text-2xl">
-            Xoxo.
+           Excel
           </span>
         </div>
         <div className="flex gap-9 items-center justify-center">

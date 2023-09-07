@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .span {
-  background: linear-gradient(to right, #ffbdf0, #f289ff, #ce7aff);
+  background: linear-gradient(to right, #4b72ac, #141314, #222024);
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -16,7 +16,7 @@
   padding: 15px;
 }
 nav .active {
-  text-decoration: underline;
+  text-decoration: none;
 }
 .mobilNav {
   z-index: 9999;
@@ -28,5 +28,5 @@ nav .active {
   grid-row-gap: 50px;
 }
 .btn {
-  background: linear-gradient(to bottom, #f0daef, #eff3ff);
+  background: linear-gradient(to bottom, #b43a36, #eff3ff);
 }
