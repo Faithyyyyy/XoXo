@@ -4,7 +4,7 @@ import { AiFillFacebook } from "react-icons/ai";
 
 function Footer() {
   return (
-    <footer className="relative bg-[#f289ff] bg-opacity-10 mt-20 w-full pt-8 pb-6 font-gilroyRegular">
+    <footer className="relative bg-[#27326d] bg-opacity-10 mt-20 w-full pt-8 pb-6 font-gilroyRegular">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-wrap text-left lg:text-left">
           <div className="w-full lg:w-6/12 px-4">
@@ -83,14 +83,13 @@ function Footer() {
                 target="_blank"
               >
                 {" "}
-                Xoxo by
+              excel-tech
               </a>
               <a
-                href="https://www.creative-tim.com?ref=njs-profile"
-                className="text-blueGray-500 hover:text-blueGray-800"
+                
               >
                 {" "}
-                Faith❤️
+                Godswill 
               </a>
               .
             </div>

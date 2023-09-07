@@ -62,7 +62,7 @@ function Signup() {
           <input
             type="text"
             name="name"
-            className="w-full h-14 mt-2 focus:border-[#f289ff] focus:outline-none focus:ring-0 rounded pl-4 border border-gray-300"
+            className="w-full h-14 mt-2 focus:border-[#908e91] focus:outline-none focus:ring-0 rounded pl-4 border border-gray-300"
             value={values.name}
             onChange={handleChange}
           />

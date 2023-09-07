@@ -18,7 +18,7 @@ function Hero() {
           data-aos="fade-in"
         >
           <p className="text-gray-400 text-left">
-            Absolutely Hot Collections🔥
+            Absolutely Hot Collections
           </p>
           <div className="flex flex-col gap-6 relative">
             <h1 className="text-3xl sm:text-5xl xl:text-7xl leading-[1.2] my-6 font-gilroyBold text-left ">

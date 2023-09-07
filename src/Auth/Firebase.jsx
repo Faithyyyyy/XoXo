@@ -1,14 +1,13 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 const firebaseConfig = {
-  apiKey: "AIzaSyDIsoRKkgaKbBaaW9m_IP-8ipxF-19m0uk",
-  authDomain: "xoxo-db.firebaseapp.com",
-  projectId: "xoxo-db",
-  storageBucket: "xoxo-db.appspot.com",
-  messagingSenderId: "648019716902",
-  appId: "1:648019716902:web:bf83448bf3f9b3e689afe7",
-  measurementId: "G-XZH40XX5RY",
+  apiKey: "AIzaSyAiroY6DYVwp2jjiUXN4_2XWocoRTcfQdU",
+  authDomain: "xoxo-ff56e.firebaseapp.com",
+  projectId: "xoxo-ff56e",
+  storageBucket: "xoxo-ff56e.appspot.com",
+  messagingSenderId: "833114438740",
+  appId: "1:833114438740:web:8a80d64bfc973c4b2a41c1",
+  measurementId: "G-SEHMTLMEYV"
 };
-
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);

@@ -56,7 +56,7 @@ function Products() {
       </div>
       <div className="grid px-5 mt-32 lg:mt-20 ">
         {isLoading &&
-          [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
+          [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13].map((n) => (
             <div className="animate-pulse rounded-md p-4" key={n}>
               <div className="rounded-md bg-slate-200 h-72 w-full "></div>
               <div className="mt-4 flex justify-between">
