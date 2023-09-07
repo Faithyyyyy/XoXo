@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 const fetchData = () => {
-  return axios.get("https://fakestoreapiserver.reactbd.com/products");
+  return axios.get("https://fakestoreapi.com/products");
 };
 
 export const useAsync = () => {
