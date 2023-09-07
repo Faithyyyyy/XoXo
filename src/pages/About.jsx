@@ -16,7 +16,7 @@ function AboutUs() {
           className="font-gilroyRegular  md:text-xl mt-9 text-center"
           data-aos="fade"
         >
-          XOXO IS… WHERE FUN MEETS FASHION & CLASS AT AFFORDABLE PRICES!
+          EXCEL SHOP IS… WHERE FUN MEETS FASHION & CLASS AT AFFORDABLE PRICES!
         </p>
         <div className="mt-20 flex flex-col lg:flex-row bg-[#f289ff] bg-opacity-10 w-full rounded px-9 py-2 gap-10 items-center">
           <img
@@ -30,7 +30,7 @@ function AboutUs() {
               OUR LITTLE <br /> N I C H E
             </h5>
             <p className="font-gilroyRegular lg:text-left">
-              Welcome to Xoxo, where fashion meets quality and affordability.
+              Welcome to Excel shop, where fashion meets quality and affordability.
               Our brand was founded in 2020 with the aim of providing our
               customers with the latest fashion trends at accessible prices.
               <br />
